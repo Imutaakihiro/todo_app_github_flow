@@ -1,0 +1,42 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <title>My Website</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>ToDoリスト</h1>
+            <div class="input-area">
+                <input type="text" id="task-input" placeholder="タスクを入力してください">
+                <button id="add-button">追加</button>
+            </div>
+            <ul id="task-list">
+                <!-- タスクがここに追加されます -->
+            </ul>
+        </div>
+        <script>
+            https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js
+            document.getElementById('add-button').addEventListener('click', function() {
+                const taskInput = document.getElementById('task-input');
+                const taskText = taskInput.value.trim();
+                
+                if (taskText) {
+                    const taskList = document.getElementById('task-list');
+                    const newTask = document.createElement('li');
+                    newTask.textContent = taskText;
+                    
+                    // 削除ボタンを作成
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = '削除';
+                    deleteButton.addEventListener('click', function() {
+                        taskList.removeChild(newTask);
+                    });
+                    
+                    newTask.appendChild(deleteButton);
+                    taskList.appendChild(newTask);
+                    taskInput.value = '';
+                }
+            });
+        </script>
+    </body>
+</html>
